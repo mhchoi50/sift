@@ -1,0 +1,14 @@
+[project]
+name = "sift-server"
+version = "0.1.0"
+description = "Parse service for the Sift capture app"
+requires-python = ">=3.10"
+dependencies = [
+    "anthropic>=1.0.0",
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.30",
+    "pydantic>=2.7",
+]
+
+[tool.uv]
+package = false
