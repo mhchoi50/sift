@@ -6,8 +6,9 @@
 
 set -euo pipefail
 
-PROJECT_DIR="$HOME/sift/ios"
-BUILD_DIR="$HOME/sift/.build"
+ROOT="$(cd "$(dirname "$0")" && pwd)"
+PROJECT_DIR="$ROOT/ios"
+BUILD_DIR="$ROOT/.build"
 BUNDLE_ID="com.mhchoi.sift"
 
 echo "Looking for a connected iPhone…"

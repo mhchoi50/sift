@@ -6,6 +6,19 @@ You speak (or type) whatever's going on. An agent reads it, rewrites it into
 titles, works out the dates, and files it as events, tasks, backlog items or
 notes. You confirm before anything lands.
 
+<p>
+  <img src="docs/today.png" width="280" alt="Today screen: schedule, overdue tasks, and items that have been sitting untouched">
+  &nbsp;
+  <img src="docs/calendar.png" width="280" alt="Month calendar with a recurring event">
+</p>
+
+<sub>Built-in sample data (launch argument <code>-siftSampleData YES</code>).</sub>
+
+**Stack:** SwiftUI and SwiftData on iOS 26, Apple's on-device Foundation Models
+for parsing, and an optional FastAPI + Claude server for messy multi-item
+captures. The model only reports the timing words it heard; Swift code turns
+them into dates (see *Decisions* below).
+
 ## Running it
 
 Sift parses captures one of two ways, switchable in Settings:
@@ -23,7 +36,7 @@ A free Apple developer account signs builds for a week. When Sift stops opening,
 plug the phone in and run:
 
 ```bash
-~/sift/reinstall.sh
+./reinstall.sh
 ```
 
 It finds the device, rebuilds, reinstalls and relaunches. A paid developer
@@ -34,18 +47,18 @@ account ($99/yr) would make builds last a year instead.
 Needs an Anthropic API key.
 
 ```bash
-cd ~/sift/server
+cd server
 cp .env.example .env       # then put your key in it
-~/.local/bin/uv run uvicorn app.main:app --host 0.0.0.0 --port 8787
+uv run uvicorn app.main:app --host 0.0.0.0 --port 8787
 ```
 
-`uv` fetches Python 3.12 and the dependencies on first run. Port 8787 because
-8000 was already taken on this machine.
+`uv` fetches Python 3.12 and the dependencies on first run. Any free port works;
+the app's server address is set in Settings.
 
 ### 2. The app
 
 ```bash
-open ~/sift/ios/Sift.xcodeproj
+open ios/Sift.xcodeproj
 ```
 
 Pick a simulator and hit run. On a real phone, set the server address in
